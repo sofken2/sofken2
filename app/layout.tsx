@@ -4,6 +4,8 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 
+import logo from './logo_trimmed.png';
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -27,20 +29,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className={`flex flex-row gap-4 p-4 items-baseline bg-cyan-100`}>
+      <body className={`flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased
+        bg-[url('https://picsum.photos/seed/eternalcore/1920/1200')] bg-cover min-h-screen`}>
+        <nav className={`flex flex-row gap-4 p-4 items-center backdrop-blur-sm backdrop-brightness-75 sticky top-0`}>
           <Link href={`/`} className={`flex flex-row align-baseline`}>
-            <span className={`text-4xl`}>TDU2部ソフ研</span>
+            <Image src={logo} alt="二部ソフトウェア研究部" className="w-40"></Image>
           </Link>
           <Link href={'/about'}>About Us</Link>
           <Link href={'/news'}>News</Link>
           <Link href={'/blog'}>Blog</Link>
           <Link href={'/contact'}>Contact</Link>
         </nav>
-        <section>
           {children}
-        </section>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+      <footer className="flex gap-6 flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
