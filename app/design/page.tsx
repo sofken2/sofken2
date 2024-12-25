@@ -11,7 +11,7 @@ export default function Design() {
     const mankind = 'https://ja.wikipedia.org/wiki/'
         + '%E3%83%8B%E3%83%BC%E3%82%A2_%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%82%BF';
 
-    return <main className="max-w-screen-sm mx-auto bg-white bg-opacity-50 p-8">
+    return <main className="max-w-screen-sm mx-auto bg-white bg-opacity-80 p-8">
         <p>{lorem}</p>
         <p>For the Glory of <Link href={mankind}>Mankind</Link>. {lorem}</p>
         <ol>

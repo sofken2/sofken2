@@ -28,13 +28,15 @@ body {
 
 @layer components {
   @scope (main) {
-    h1 { @apply text-6xl mt-6 mb-4 border-l-4 border-blue-400 ps-4; }
-    h2 { @apply text-4xl mt-4 mb-4 border-l-4 border-blue-400 ps-4; }
-    h3 { @apply text-3xl mt-4 mb-2 border-l-4 border-blue-400 ps-4; }
-    h4 { @apply text-2xl mt-4 mb-2 border-l-4 border-blue-400 ps-4; }
-    h5 { @apply text-xl mt-4 mb-1 border-l-4 border-blue-400 ps-4; }
-    h6 { @apply text-xl mt-4 mb-1 border-l-4 border-blue-400 ps-4; }
-    p { @apply my-2; }
+    h1 { @apply text-6xl mt-6 mb-4; }
+    h2 { @apply text-4xl mt-4 mb-4; }
+    h3 { @apply text-3xl mt-4 mb-2; }
+    h4 { @apply text-2xl mt-4 mb-2; }
+    h5 { @apply text-xl mt-4 mb-1; }
+    h6 { @apply text-xl mt-4 mb-1; }
+    h1, h2 { @apply border-s-4 border-s-blue-400 ps-4; }
+    h3, h4, h5, h6 { @apply border-s-4 border-s-blue-400 border-double ps-4; }
+    p { @apply my-2 indent-4; }
 
     ul, ol { @apply my-2 ps-8; }
     ul { @apply list-outside list-disc; }
@@ -49,4 +51,10 @@ body {
       @apply transition-all duration-200 ease-out;
     }
   }
+}
+
+.nav a {
+  @apply h-full flex flex-row items-center p-8;
+  @apply shadow-white hover:shadow-white shadow-[inset_0_-2px_0_0] hover:shadow-[inset_0_-6rem_0_0];
+  @apply hover:text-black transition-all duration-500 ease-in-out;
 }
