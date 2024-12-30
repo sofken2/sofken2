@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased
         bg-[url('https://picsum.photos/seed/eternalcore/1920/1200?grayscale')] bg-cover min-h-screen">
-        <header className="flex flex-row items-stretch text-white backdrop-blur-sm backdrop-brightness-50 sticky top-0 border-b-white border-b-2">
+        <header className="flex flex-row items-stretch text-white backdrop-blur-sm backdrop-brightness-50 sticky top-0 border-b-white border-b-2 z-10">
           <Link href={`/`} className={`flex flex-row align-baseline`}>
             <Image src={logo_dark} alt="二部ソフトウェア研究部" className="px-16 py-4 w-auto h-24" />
           </Link>
