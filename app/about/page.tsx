@@ -2,8 +2,7 @@ import Image from 'next/image';
 import { logo_light } from '../res/logo';
 
 export default function Home() {
-
-  return <main className="max-w-screen-sm mx-auto bg-white bg-opacity-80 p-8">
+  return (<main className="max-w-screen-sm mx-auto bg-white bg-opacity-80 p-8">
     <h1>About Us</h1>
     <Image src={logo_light} alt="2部ソフのロゴ" />
 
@@ -30,5 +29,5 @@ export default function Home() {
       </p>
 
     </section>
-  </main>;
+  </main>);
 }
