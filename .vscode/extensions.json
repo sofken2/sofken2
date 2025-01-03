@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss",
+    "zignd.html-css-class-completion",
+    "unifiedjs.vscode-mdx",
+    "shd101wyy.markdown-preview-enhanced"
+  ]
+}
