@@ -1,0 +1,141 @@
+import Script from 'next/script';
+
+# ヘッダーです
+## ヘッダーです
+### ヘッダーです
+#### ヘッダーです
+##### ヘッダーです
+###### ヘッダーです
+
+### 書式
+
+これが段落。
+
+これはまた別の段落。  
+スペースを2つ打つことで同じ段落内で改行（WordのShift+Enter）  
+空行を1つ挟むことで別の段落にできます。
+
+*斜体*、**太字**、***両方***、~~打ち消し~~、~~***全部***~~
+
+下付き<sub>下付き</sub>上付き<sup>上付き</sup><ins>下線</ins>
+
+このページは[GitHub Flavored Markdown](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+のページを参考に書いてます。ついでにリンクの書式。
+
+`#ffffff`とか`rgb(0, 0%, 0%)`でカラーが表示されるらしい。ほんとぉ？
+
+> 引用
+>
+> 引用
+>> もっと引用
+>>
+>> もっと引用
+
+> [!NOTE]
+> この[構文](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#footnotes)はまだ未対応。
+
+ついでにコードはインラインに`HelloWorld`か
+```rust
+pub main() {
+  println!("Hello World");
+}
+```
+
+```tsx
+export default function HelloWorld({name}: {name: string}) {
+  return (<main>
+    Hello World, {name}!
+  </main>);
+}
+```
+ハイライトはまだ未対応。
+
+````md
+```rust
+pub main() {
+  println!("Hello World");
+}
+```
+````
+たくさんつければ、\`\`\`も書ける
+
+<a name="anchor-here"></a>
+↑ここら辺にアンカー
+
+[そしてこれがアンカーにジャンプするリンク](#anchor-here)
+
+画像はこう
+
+![代替テキストをここに](../res/logo_light_trimmed.png)
+
+---
+
+1. リストです
+    1. こ
+    2. こ
+    3. も
+        1. リストです
+        2. リストです
+2. リストです
+
+---
+
+- 箇条書きです
+    - 箇条書きです
+    - 箇条書きです
+    - 箇条書きです
+        - 箇条書きです
+        - 箇条書きです
+- 箇条書きです
+
+---
+
+- [ ] チェックボックス
+- [x] ヨシ！
+- [x] 前の人がチェックしたからきっとヨシ！
+
+--- 
+
+いける？:+1:[^1]
+
+[^1]: emojicodeテスト。ついでに脚注テスト
+
+|テーブル|テーブル|テーブル|テーブル|
+|:-------|-------:|:------:|:------:|
+|左寄せ  |右寄せ  |中央    |中央    |
+|左寄せ  |右寄せ  |中央    |中央    |
+|1       |2       |3       |4       |
+
+<details>
+  <summary>こんな風にして折り畳み</summary>
+
+  ここに詳細  
+  *マークダウン*も**使用可能**  
+  ここに詳細  
+</details>
+
+$\TeX$もいける
+
+$$
+\TeX=\int_{0}^{\pi}\sin(x)dx
+$$
+あるいは
+```math
+\TeX=\int_{0}^{\pi}\sin(x)dx
+```
+
+ダイアグラム
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+export default function MDXTest({children}) {
+  return <div className="markdown-body">
+          <Script stylesheets={['https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown.min.css']} />
+          {children}
+  </div>;
+}

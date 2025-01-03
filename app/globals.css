@@ -28,7 +28,7 @@ body {
 
 @layer components {
   @scope (main) {
-    h1 { @apply text-6xl mt-6 mb-4; }
+    /* h1 { @apply text-6xl mt-6 mb-4; }
     h2 { @apply text-4xl mt-4 mb-4; }
     h3 { @apply text-3xl mt-4 mb-2; }
     h4 { @apply text-2xl mt-4 mb-2; }
@@ -42,13 +42,17 @@ body {
     ul { @apply list-outside list-disc; }
     ol { @apply list-outside list-decimal; }
     :is(ul, ol) ol { @apply list-[lower-roman]; }
-    :is(ul, ol) :is(ul, ol) ol { @apply list-[lower-alpha]; }
+    :is(ul, ol) :is(ul, ol) ol { @apply list-[lower-alpha]; } */
 
     a {
       @apply text-blue-600 underline hover:text-white;
       @apply p-0 m-0 hover:p-0.5 hover:-m-0.5;
       @apply shadow-blue-600 hover:shadow-blue-600 shadow-[inset_0_0_0_0] hover:shadow-[inset_0_-1lh_0_0];
       @apply transition-all duration-200 ease-out;
+    }
+
+    hr {
+      @apply h-px bg-gray-600;
     }
   }
 }
