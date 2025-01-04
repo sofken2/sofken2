@@ -25,40 +25,17 @@ body {
     text-wrap: balance;
   }
 }
-
-@layer components {
-  @scope (main) {
-    /* h1 { @apply text-6xl mt-6 mb-4; }
-    h2 { @apply text-4xl mt-4 mb-4; }
-    h3 { @apply text-3xl mt-4 mb-2; }
-    h4 { @apply text-2xl mt-4 mb-2; }
-    h5 { @apply text-xl mt-4 mb-1; }
-    h6 { @apply text-xl mt-4 mb-1; }
-    h1, h2 { @apply border-s-4 border-s-blue-400 ps-4; }
-    h3, h4, h5, h6 { @apply border-s-4 border-s-blue-400 border-double ps-4; }
-    p { @apply my-2 indent-4; }
-
-    ul, ol { @apply my-2 ps-8; }
-    ul { @apply list-outside list-disc; }
-    ol { @apply list-outside list-decimal; }
-    :is(ul, ol) ol { @apply list-[lower-roman]; }
-    :is(ul, ol) :is(ul, ol) ol { @apply list-[lower-alpha]; } */
-
-    a {
-      @apply text-blue-600 underline hover:text-white;
-      @apply p-0 m-0 hover:p-0.5 hover:-m-0.5;
-      @apply shadow-blue-600 hover:shadow-blue-600 shadow-[inset_0_0_0_0] hover:shadow-[inset_0_-1lh_0_0];
-      @apply transition-all duration-200 ease-out;
-    }
-
-    hr {
-      @apply h-px bg-gray-600;
-    }
-  }
-}
-
 .nav a {
   @apply h-full flex flex-row items-center p-8;
   @apply shadow-white hover:shadow-white shadow-[inset_0_-2px_0_0] hover:shadow-[inset_0_-6rem_0_0];
   @apply hover:text-black transition-all duration-500 ease-in-out;
+}
+
+.prose {
+  h1 { @apply border-blue-400 border-b-4 pb-1 after:content-["//_Level_1"] after:mx-auto after:text-sm; ; }
+  h2 { @apply border-blue-400 border-b-4 pb-1 after:content-["//_Level_2"] after:mx-auto after:text-sm; ; }
+  h3 { @apply border-blue-400 border-b-2 pb-1 after:content-["//_Level_3"] after:mx-auto after:text-xs; ; }
+  h4 { @apply border-blue-400 border-b-2 pb-1 after:content-["//_Level_4"] after:mx-auto after:text-xs; ; }
+  h5 { @apply border-blue-400 border-b-2 after:content-["//_Level_5"] after:mx-auto after:text-xs; }
+  h6 { @apply border-blue-400 border-b-2 after:content-["//_Level_6"] after:mx-auto after:text-xs; }
 }

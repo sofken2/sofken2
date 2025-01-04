@@ -1,4 +1,6 @@
 import Script from 'next/script';
+import Image from 'next/image';
+import {logo_light} from '../res/logo';
 
 # ヘッダーです
 ## ヘッダーです
@@ -20,7 +22,7 @@ import Script from 'next/script';
 下付き<sub>下付き</sub>上付き<sup>上付き</sup><ins>下線</ins>
 
 このページは[GitHub Flavored Markdown](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-のページを参考に書いてます。ついでにリンクの書式。
+のページを参考に書いてます。ついでにリンクの書式。[クリックしないで。これはまだ行ったことのないリンクのテスト](about:blank)
 
 `#ffffff`とか`rgb(0, 0%, 0%)`でカラーが表示されるらしい。ほんとぉ？
 
@@ -34,23 +36,24 @@ import Script from 'next/script';
 > [!NOTE]
 > この[構文](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#footnotes)はまだ未対応。
 
-ついでにコードはインラインに`HelloWorld`か
-```rust
+ついでにコードはインラインに`HelloWorld`とか`[1, 2, 3]{:js}`とか、あるいは
+```rust title="Rustサイコー！" caption="Rustサイコーと言いなさい"
 pub main() {
   println!("Hello World");
 }
 ```
 
-```tsx
+```tsx {3} /main/ "name"
 export default function HelloWorld({name}: {name: string}) {
   return (<main>
     Hello World, {name}!
   </main>);
 }
 ```
-ハイライトはまだ未対応。
+ハイライトはまだ~~未~~対応。
 
-````md
+↓行表示にはcssが必要
+````md showLineNumbers
 ```rust
 pub main() {
   println!("Hello World");
@@ -67,6 +70,7 @@ pub main() {
 画像はこう
 
 ![代替テキストをここに](../res/logo_light_trimmed.png)
+<Image src={logo_light} alt="代替テキストをここに" />
 
 ---
 
@@ -116,10 +120,13 @@ pub main() {
 
 $\TeX$もいける
 
+```md
 $$
 \TeX=\int_{0}^{\pi}\sin(x)dx
 $$
-あるいは
+```
+でいけると思ったけどmdxのエディタがダメと言う  
+なのでこっちを↓
 ```math
 \TeX=\int_{0}^{\pi}\sin(x)dx
 ```
@@ -132,10 +139,10 @@ graph TD;
     B-->D;
     C-->D;
 ```
+は無理
 
 export default function MDXTest({children}) {
-  return <div className="markdown-body">
-          <Script stylesheets={['https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown.min.css']} />
-          {children}
+  return <div className="prose prose-slate prose-relative-weight prose-theme-override markdown-body !bg-transparent">
+    {children}
   </div>;
 }
