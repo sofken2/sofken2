@@ -32,10 +32,18 @@ body {
 }
 
 .prose {
-  h1 { @apply border-blue-400 border-b-4 pb-1 after:content-["//_Level_1"] after:mx-auto after:text-sm; ; }
-  h2 { @apply border-blue-400 border-b-4 pb-1 after:content-["//_Level_2"] after:mx-auto after:text-sm; ; }
-  h3 { @apply border-blue-400 border-b-2 pb-1 after:content-["//_Level_3"] after:mx-auto after:text-xs; ; }
-  h4 { @apply border-blue-400 border-b-2 pb-1 after:content-["//_Level_4"] after:mx-auto after:text-xs; ; }
-  h5 { @apply border-blue-400 border-b-2 after:content-["//_Level_5"] after:mx-auto after:text-xs; }
-  h6 { @apply border-blue-400 border-b-2 after:content-["//_Level_6"] after:mx-auto after:text-xs; }
+  h1 { @apply border-blue-400 border-b-4 pb-1 before:content-["#"] before:me-1 after:content-["//_Level_1"] after:ms-1 after:text-sm; ; }
+  h2 { @apply border-blue-400 border-b-4 pb-1 before:content-["#"] before:me-1 after:content-["//_Level_2"] after:ms-1 after:text-sm; ; }
+  h3 { @apply border-blue-400 border-b-2 pb-1 before:content-["#"] before:me-1 after:content-["//_Level_3"] after:ms-1 after:text-xs; ; }
+  h4 { @apply border-blue-400 border-b-2 pb-1 before:content-["#"] before:me-1 after:content-["//_Level_4"] after:ms-1 after:text-xs; ; }
+  h5 { @apply border-blue-400 border-b-2 before:content-["#"] before:me-1 after:content-["//_Level_5"] after:ms-1 after:text-xs; }
+  h6 { @apply border-blue-400 border-b-2 before:content-["#"] before:me-1 after:content-["//_Level_6"] after:ms-1 after:text-xs; }
+}
+
+.icon-link {
+  @apply text-sm icon-mdi-light-link-variant mx-0.5 align-middle;
+}
+
+a[href^='http'] {
+  @apply after:icon-material-symbols-light-open-in-new after:mx-0.5 after:align-middle;
 }

@@ -1,8 +1,9 @@
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
 import typographyPlugin from '@tailwindcss/typography';
+import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons';
 import { type ResolvableTo } from 'tailwindcss/types/config';
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 
 const key = (w: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900') => {
   const [name] = Object.entries(defaultTheme.fontWeight ?? {}).find(([, value]) => value === w) ?? ['normal'];
@@ -14,6 +15,13 @@ const config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  plugins: [
+    typographyPlugin,
+    iconsPlugin({
+      prefix: 'icon',
+      collections: getIconCollections(['mdi-light', 'material-symbols-light']),
+    }),
   ],
   theme: {
     extend: {
@@ -40,6 +48,7 @@ const config = {
             'ol:not([type])': { listStyleType: 'decimal' },
             ':is(ul, ol) ol:not([type])': { listStyleType: 'lower-roman' },
             ':is(ul, ol) :is(ul, ol) ol:not([type])': { listStyleType: 'lower-alpha' },
+            ':is(ul, ol) :is(ul, ol) :is(ul, ol) ol:not([type])': { listStyleType: 'decimal' },
             'blockquote': {
               fontStyle: 'inherit',
               quotes: 'none',
@@ -112,9 +121,6 @@ const config = {
       })) satisfies ResolvableTo<TypographyConfig>,
     },
   },
-  plugins: [
-    typographyPlugin,
-  ],
 } satisfies Config;
 export default config;
 

@@ -2,6 +2,8 @@ import Script from 'next/script';
 import Image from 'next/image';
 import {logo_light} from '../res/logo';
 
+# Markdown実装テスト兼チートシート
+
 # ヘッダーです
 ## ヘッダーです
 ### ヘッダーです
@@ -9,6 +11,11 @@ import {logo_light} from '../res/logo';
 ##### ヘッダーです
 ###### ヘッダーです
 
+## 目次
+
+ここに目次が生成されます。このセクションの内容は全て消去されてしまうので注意。
+
+## 本文
 ### 書式
 
 これが段落。
@@ -140,6 +147,21 @@ graph TD;
     C-->D;
 ```
 は無理
+
+## なんとか
+なんとか
+
+### かんとか
+かんとか
+
+## なんとか
+なんとか
+
+## かんとか
+かんとか
+
+remark-breaksのテスト\>
+\<ただの改行
 
 export default function MDXTest({children}) {
   return <div className="prose prose-slate prose-relative-weight prose-theme-override markdown-body !bg-transparent">
