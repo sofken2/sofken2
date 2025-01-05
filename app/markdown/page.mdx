@@ -75,9 +75,11 @@ pub main() {
 [そしてこれがアンカーにジャンプするリンク](#anchor-here)
 
 画像はこう
-
-![代替テキストをここに](../res/logo_light_trimmed.png)
-<Image src={logo_light} alt="代替テキストをここに" />
+<Image src={logo_light} title="ソフ研ロゴ" alt="代替テキストをここに" />
+本当はこう↓とも書けるどImageコンポーネントを使うことができない
+```md
+![代替テキストをここに](../res/logo_light_trimmed.png ソフ研ロゴ)
+```
 
 ---
 
@@ -162,9 +164,3 @@ graph TD;
 
 remark-breaksのテスト\>
 \<ただの改行
-
-export default function MDXTest({children}) {
-  return <div className="prose prose-slate prose-relative-weight prose-theme-override markdown-body !bg-transparent">
-    {children}
-  </div>;
-}
