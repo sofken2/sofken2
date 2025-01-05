@@ -53,5 +53,14 @@
             "strings": "off",
             "other": "off"
         }
-    }
+    },
+    "tailwindCSS.classAttributes": ["class", "className", ".*[Cc]lass", ".*[Ss]tyles", ".*[Cc]lasses"],
+    "tailwindCSS.experimental.classRegex": [
+        ["[Cc]lasses\\s*=([^;]*);", "'([^']*)'"],
+        ["[Cc]lasses\\s*=([^;]*);", "\"([^\"]*)\""],
+        ["[Cc]lasses\\s*=([^;]*);", "\\`([^\\`]*)\\`"],
+        ["[Cc]lassName\\s*:\\s*'([^']*)'", "(.*)"],
+        ["[Cc]lassName\\s*:\\s*\"([^\"]*)\"", "(.*)"],
+        ["[Cc]lassName\\s*:\\s*\\`([^\\`]*)\\`", "(.*)"]
+    ]
 }

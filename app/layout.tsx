@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import { M_PLUS_1p } from 'next/font/google';
 
 import { logo_dark } from './res/logo';
 
@@ -15,6 +16,11 @@ const geistMono = localFont({
   src: './fonts/GeistMonoVF.woff',
   variable: '--font-geist-mono',
   weight: '100 900',
+});
+const mplus = M_PLUS_1p({
+  variable: '--font-mplus-1p',
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700', '800', '900'],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased
+      <body className={`h-24 flex flex-col ${geistSans.variable} ${geistMono.variable} ${mplus.variable} font-sans font-light antialiased
         bg-[url('https://picsum.photos/seed/eternalcore/1920/1200?grayscale')] bg-cover min-h-screen`}>
         <header className="flex flex-row items-stretch text-white backdrop-blur-sm backdrop-brightness-50 sticky top-0 border-b-white border-b-2 z-10">
           <Link href="/" className="flex flex-row align-baseline">
@@ -50,9 +56,9 @@ export default function RootLayout({
             </li>
           </ul>
         </header>
-        <div>
+        <main className="max-w-screen-sm w-full mx-auto bg-white bg-opacity-80 p-8 -mt-24 pt-32">
           {children}
-        </div>
+        </main>
         <footer className="flex flex-row gap-6 flex-wrap items-center justify-center min-h-40 backdrop-blur-sm backdrop-brightness-50">
           <Link href="/" className="flex flex-row align-baseline">
             <Image src={logo_dark} alt="二部ソフトウェア研究部" className="w-80" />
