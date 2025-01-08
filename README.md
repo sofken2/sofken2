@@ -1,27 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <a href="https://tailwindcss.com" target="_blank"">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./app/res/logo_dark_trimmed.png">
+      <source media="(prefers-color-scheme: light)" srcset="./app/res/logo_light_trimmed.png">
+      <img alt="2部ソフトウェア研究部" src="./app/res/logo_light_trimmed.png" width="600" height="161" style="max-width: 100%;">
+    </picture>
+  </a>
+</p>
+<p align="center">
+  東京電機大学2部ソフトウェア研究部ホームページ
+</p>
 
-> [!NOTE]
-> - [ ] Configure `.eslintrc.json`
+<p align="center">
+    <a href="https://github.com/sofken2/sofken2/actions"><img src="https://github.com/sofken2/sofken2/actions/workflows/nextjs.yml/badge.svg?event=push" alt="Build Next,js site" /></a>
+</p>
+
+
+> [!IMPORTANT]
+> このホームページは現在開発中です。  
+> 開発計画の詳細については[Project](https://github.com/orgs/sofken2/projects/2)を確認してください。
+
+
+東京電機大学2部ソフトウェア研究部のホームページのリポジトリです。
 
 ## Getting Started
 
-First, run the development server:
+### まず初めに
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+何よりもまず初めに、`git`と`Node.js`がインストールされていて、`PATH`が通っている必要があります。
+`git -v`や`node -v`を実行してバージョンが表示されることを確認してください。
+
+```sh
+node -v
+# => v23.5.0
+
+npm -v
+# => 10.9.2
+
+git -v
+# => git version 2.47.1.windows.1
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+もし、バージョンが表示されない場合[Node.jsのインストール方法](https://nodejs.org/en/download)と[Gitのインストール方法](https://git-scm.com/book/ja/v2/使い始める-Gitのインストール)を見てインストールしておいてください。`winget`が使えるようなら`winget install OpenJS.NodeJS Git.Git`でもいいですよ。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> [!TIP]
+> このリポジトリにはVSCode用の設定や拡張機能の推奨が含まれています。  
+> 特にエディタに好みがないならVSCodeを使うことをおすすめします。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 開発の下準備
+
+次にこのリポジトリを`clone`しましょう。ページ右上の`<> Code`からリポジトリのURLをコピーできます。
+
+```sh
+cd your-workspace-dir # 適宜書き換えてください
+git clone https://github.com/sofken2/sofken2.git
+ls sofken2
+```
+
+> [!TIP]
+> ホームディレクトリ（`C:/Users/name/`）の直下やドキュメントフォルダに作成するのはおすすめしません。  
+> ディレクトリが散らかったり、OneDriveにアップロードされてしまうからです。  
+> `C:/Users/name/workspace`などを作成することをおすすめします。
+
+`ls sofken2`を実行してファイル一覧が表示されれば成功です。
+
+最後に`npm install`を実行すれば下準備は完了です。5分かそれ以上かかる場合もあるのでゆっくり待ちましょう。
+
+```sh
+npm install
+```
+
+### 開発サーバーの実行
+
+コードに変更を加える前に、開発サーバーを実行しましょう。
+開発サーバーは開発中のWebサイトを確認できるだけでなく、コードに加えた変更が自動的に適用され、すぐにブラウザで確認できるようになるのでとても便利です。
+
+```sh
+npm run dev
+```
+
+10秒程度で`✓ Ready in XX.Xs`と表示されるので、[http://localhost:3000](http://localhost:3000)を開いて結果を見ましょう。
+
+---
+> 以下は`create-next-app`時に作成された`README.md`の残りです
 
 ## Learn More
 
