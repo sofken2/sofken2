@@ -43,14 +43,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
+
+      # GitHub Pagesは無効
+      # - name: Setup Pages
+      #   uses: actions/configure-pages@v5
+      #   with:
+      #     # Automatically inject basePath in your Next.js configuration file and disable
+      #     # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+      #     #
+      #     # You may remove this line if you want to manage the configuration yourself.
+      #     static_site_generator: next
 
       # - https://zenn.dev/dena/articles/14ca3d9ed1a457
       # - https://github.com/actions/starter-workflows/blob/main/pages/nextjs.yml
@@ -71,14 +73,14 @@ jobs:
       - name: Build with Next.js
         run: npm run build
 
-      # Artifactのアップロードはpush時のみ
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
-        if: github.event_name == 'push'
+      # GitHub Pagesは無効
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     path: ./out
+      #   if: github.event_name == 'push'
 
-  # github-pagesへのデプロイはまだ行わない
+  # GitHub Pagesは無効
   # Deployment job
   # deploy:
   #   environment:
