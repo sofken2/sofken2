@@ -73,6 +73,12 @@ jobs:
       - name: Build with Next.js
         run: npm run build
 
+      # 使用パッケージに併用できないライセンスが無いかチェック
+      # このチェックに失敗したとき、失敗したライセンスがリポジトリのライセンスと適合しているなら--onlyAllowを修正していい。
+      # license-checkerはどうやらメンテされてないようなので、代替としてこちらを使用。
+      - name: Check licenses
+        run: npx --yes license-checker-rseidelsohn@^4.4.2 --depth 0 --onlyAllow 'MIT; Apache-2.0; OFL-1.1' --excludePackages sofken2
+
       # GitHub Pagesは無効
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v3
