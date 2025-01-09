@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://tailwindcss.com" target="_blank"">
+  <a href="https://github.com/sofken2/sofken2" target="_blank"">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./app/res/logo_dark_trimmed.png">
       <source media="(prefers-color-scheme: light)" srcset="./app/res/logo_light_trimmed.png">
