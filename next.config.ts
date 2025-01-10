@@ -31,4 +31,9 @@ const withMDX = createMDX({
   },
 });
 
-export default withMDX(nextConfig);
+// actions/configure-pagesを使用するための迂回策
+const nextConfigWithMDX = {
+  ...withMDX(nextConfig),
+};
+
+export default nextConfigWithMDX;
