@@ -27,11 +27,11 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`min-h-screen ${mplus.variable} font-sans font-light antialiased bg-[url('https://picsum.photos/seed/eternalcore/1920/1200?grayscale')] bg-cover`}>
 
-        <header className="h-24 flex flex-row sticky top-0 z-10 text-white backdrop-blur-sm backdrop-brightness-50 border-b-white border-b-2">
-          <Link href="/" className="h-full">
+        <header className="flex flex-row sticky top-0 z-10 text-white backdrop-blur-sm backdrop-brightness-50 border-b-white border-b-2 max-md:flex-col max-md:items-center">
+          <Link href="/" className="h-24">
             <Image src={logo_dark} alt="二部ソフトウェア研究部" className="px-16 py-4 h-full w-fit object-contain" />
           </Link>
-          <ul className="nav h-full ms-auto flex flex-row gap-1">
+          <ul className="nav h-24 ms-auto flex flex-row gap-1 max-md:h-12 *:max-md:flex-1 max-md:w-full">
             <li><Link href="/about">About Us</Link></li>
             <li><Link href="/news">News</Link></li>
             <li><Link href="/blog">Blog</Link></li>
@@ -39,12 +39,12 @@ export default function RootLayout({
           </ul>
         </header>
 
-        <main className="max-w-screen-sm min-h-full mx-auto bg-white bg-opacity-80 p-8 -mt-24 pt-24 -mb-60 pb-60">
+        <main className="max-w-screen-sm min-h-full mx-auto bg-white bg-opacity-80 p-8 -mt-24 pt-24 -mb-60 pb-60 max-md:-mt-36 max-md:pt-36 max-md:max-w-full lg:max-w-screen-md">
           {children}
         </main>
 
         <footer className="h-60 flex flex-row gap-6 flex-wrap items-center justify-center backdrop-blur-sm backdrop-brightness-50 text-white">
-          <Link href="/" className="flex flex-row align-baseline">
+          <Link href="/" className="flex flex-row align-baseline max-md:hidden">
             <Image src={logo_dark} alt="二部ソフトウェア研究部" className="w-64" />
           </Link>
           <a
@@ -88,6 +88,12 @@ export default function RootLayout({
             <span className="first-line:text-lg first-line:leading-none text-xs w-min">Preview<br />Under Construction</span>
           </span>
         </label>}
+
+        {process.env.NODE_ENV !== 'production' && <div className="fixed inset-0 m-auto size-max text-4xl select-none">
+          <span className="sm:after:content-['sm'] md:after:content-['md'] lg:after:content-['lg'] xl:after:content-['xl']" />
+          <span> / </span>
+          <span className="max-sm:after:content-['max-sm'] max-md:after:content-['max-md'] max-lg:after:content-['max-lg'] max-xl:after:content-['max-xl']" />
+        </div>}
       </body>
     </html>
   );
