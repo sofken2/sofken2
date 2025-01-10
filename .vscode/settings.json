@@ -62,5 +62,8 @@
         ["[Cc]lassName\\s*:\\s*'([^']*)'", "(.*)"],
         ["[Cc]lassName\\s*:\\s*\"([^\"]*)\"", "(.*)"],
         ["[Cc]lassName\\s*:\\s*\\`([^\\`]*)\\`", "(.*)"]
-    ]
+    ],
+    "files.associations": {
+        "*.css": "tailwindcss"
+    }
 }

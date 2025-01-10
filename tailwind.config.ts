@@ -21,7 +21,10 @@ const config = {
     typographyPlugin,
     iconsPlugin({
       prefix: 'icon',
-      collections: getIconCollections(['mdi-light', 'material-symbols-light']),
+      collections: getIconCollections(['mdi-light', 'material-symbols-light', 'uit']),
+      collectionNamesAlias: {
+        'material-symbols-light': 'mslight',
+      },
     }),
   ],
   theme: {
