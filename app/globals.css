@@ -46,6 +46,6 @@ body {
   }
 
   a[href^='http'] {
-    @apply after:icon-material-symbols-light-open-in-new after:mx-0.5 after:align-middle;
+    @apply after:icon-mslight-open-in-new after:mx-0.5 after:align-middle;
   }
 }

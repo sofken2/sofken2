@@ -45,46 +45,39 @@ export default function RootLayout({
 
         <footer className="h-60 flex flex-row gap-6 flex-wrap items-center justify-center backdrop-blur-sm backdrop-brightness-50 text-white">
           <Link href="/" className="flex flex-row align-baseline">
-            <Image src={logo_dark} alt="二部ソフトウェア研究部" className="w-80" />
+            <Image src={logo_dark} alt="二部ソフトウェア研究部" className="w-64" />
           </Link>
           <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            className="flex items-center hover:underline underline-offset-4"
             href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer">
-            <Image
-              aria-hidden
-              src="https://nextjs.org/icons/file.svg"
-              alt="File icon"
-              width={16}
-              height={16} />
+            <span className="icon-mslight-document-search-outline size-4 me-2" />
             Learn
           </a>
           <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            className="flex items-center hover:underline underline-offset-4"
             href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer">
-            <Image
-              aria-hidden
-              src="https://nextjs.org/icons/window.svg"
-              alt="Window icon"
-              width={16}
-              height={16} />
+            <span className="icon-mslight-select-window-2-outline me-2" />
             Examples
           </a>
           <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            className="flex items-center hover:underline underline-offset-4"
+            href="https://github.com/sofken2/sofken2"
             target="_blank"
             rel="noopener noreferrer">
-            <Image
-              aria-hidden
-              src="https://nextjs.org/icons/globe.svg"
-              alt="Globe icon"
-              width={16}
-              height={16} />
-            Go to nextjs.org →
+            <span className="icon-uit-github-alt me-2" />
+            GitHub
+          </a>
+          <a
+            className="flex items-center hover:underline underline-offset-4"
+            href="https://x.com/sofken2"
+            target="_blank"
+            rel="noopener noreferrer">
+            <span className="icon-uit-twitter-alt me-2" />
+            Twitter
           </a>
         </footer>
 
