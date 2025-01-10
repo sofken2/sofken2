@@ -44,15 +44,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      # GitHub Pagesは無効
-      # - name: Setup Pages
-      #   uses: actions/configure-pages@v5
-      #   with:
-      #     # Automatically inject basePath in your Next.js configuration file and disable
-      #     # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-      #     #
-      #     # You may remove this line if you want to manage the configuration yourself.
-      #     static_site_generator: next
+        # Next.jsのwrapped configに対応していないのでnpm run build時に手動で設定
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        # with:
+        #   # Automatically inject basePath in your Next.js configuration file and disable
+        #   # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+        #   #
+        #   # You may remove this line if you want to manage the configuration yourself.
+        #   static_site_generator: next
 
       # - https://zenn.dev/dena/articles/14ca3d9ed1a457
       # - https://github.com/actions/starter-workflows/blob/main/pages/nextjs.yml
@@ -72,6 +73,9 @@ jobs:
         run: npm ci
       - name: Build with Next.js
         run: npm run build
+        env:
+          deployment: preview
+          base_path: ${{ steps.pages.outputs.base_path }}
 
       # 使用パッケージに併用できないライセンスが無いかチェック
       # このチェックに失敗したとき、失敗したライセンスがリポジトリのライセンスと適合しているなら--onlyAllowを修正していい。
@@ -79,22 +83,21 @@ jobs:
       - name: Check licenses
         run: npx --yes license-checker-rseidelsohn@^4.4.2 --depth 0 --onlyAllow 'MIT; Apache-2.0; OFL-1.1' --excludePackages sofken2
 
-      # GitHub Pagesは無効
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     path: ./out
-      #   if: github.event_name == 'push'
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+        # if: github.event_name == 'push'
 
   # GitHub Pagesは無効
   # Deployment job
-  # deploy:
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #     - name: Deploy to GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v4
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

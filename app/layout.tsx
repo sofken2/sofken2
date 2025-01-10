@@ -103,6 +103,14 @@ export default function RootLayout({
             Go to nextjs.org →
           </a>
         </footer>
+
+        {process.env.deployment == 'preview' && <label className="fixed bottom-4 right-4 w-min self-center p-2 bg-[repeating-linear-gradient(135deg,black_0px,black_20px,yellow_20px,yellow_40px)] transition-all duration-500 has-[#preview-tip:checked]:translate-x-full has-[#preview-tip:checked]:opacity-20">
+          <input type="checkbox" id="preview-tip" name="隠す" className="sr-only" />
+          <span className="flex flex-row items-center self-center bg-slate-600 px-2 py-1 text-white">
+            <span className="icon-material-symbols-light-construction text-4xl me-2"></span>
+            <span className="first-line:text-lg first-line:leading-none text-xs w-min">Preview<br />Under Construction</span>
+          </span>
+        </label>}
       </body>
     </html>
   );

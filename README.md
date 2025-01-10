@@ -1,9 +1,11 @@
 <p align="center">
-  <a href="https://github.com/sofken2/sofken2" target="_blank"">
+  <a href="https://sofken2.github.io/sofken2" target="_blank">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./app/res/logo_dark_trimmed.png">
-      <source media="(prefers-color-scheme: light)" srcset="./app/res/logo_light_trimmed.png">
-      <img alt="2部ソフトウェア研究部" src="./app/res/logo_light_trimmed.png" width="600" height="161" style="max-width: 100%;">
+      <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="./app/res/logo_dark_trimmed.png">
+      <source media="(max-width: 640px) and (prefers-color-scheme: light)" srcset="./app/res/logo_light_trimmed.png">
+      <source media="(prefers-color-scheme: dark)" srcset="./app/res/logo_dark_trimmed.png" width="500" height="135">
+      <source media="(prefers-color-scheme: light)" srcset="./app/res/logo_light_trimmed.png" width="500" height="135">
+      <img alt="2部ソフトウェア研究部" src="./app/res/logo_light_trimmed.png">
     </picture>
   </a>
 </p>
@@ -12,12 +14,13 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/sofken2/sofken2/actions"><img src="https://github.com/sofken2/sofken2/actions/workflows/nextjs.yml/badge.svg?event=push" alt="Build Next,js site" /></a>
+    <a href="https://github.com/sofken2/sofken2/actions"><img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/sofken2/sofken2/nextjs.yml"></a>
+    <a href="https://sofken2.github.io/sofken2"><img alt="GitHub deployments" src="https://img.shields.io/github/deployments/sofken2/sofken2/github-pages?label=preview"></a>
 </p>
 
 
 > [!IMPORTANT]
-> このホームページは現在開発中です。  
+> このホームページは現在開発中です。[ここから現在の進捗を見ることができます](https://sofken2.github.io/sofken2)。  
 > 開発計画の詳細については[Project](https://github.com/orgs/sofken2/projects/2)を確認してください。
 
 
