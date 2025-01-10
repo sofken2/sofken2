@@ -44,17 +44,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-        # Next.jsのwrapped configに対応していないのでフォークを使用
+        # Next.jsのwrapped configに対応していないのでnpm run build時に手動で設定
       - name: Setup Pages
-        # uses: actions/configure-pages@v5
-        uses: Janealter/configure-pages@v1
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
-          generator_config_file: './next.config.ts'
+        id: pages
+        uses: actions/configure-pages@v5
+        # with:
+        #   # Automatically inject basePath in your Next.js configuration file and disable
+        #   # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+        #   #
+        #   # You may remove this line if you want to manage the configuration yourself.
+        #   static_site_generator: next
 
       # - https://zenn.dev/dena/articles/14ca3d9ed1a457
       # - https://github.com/actions/starter-workflows/blob/main/pages/nextjs.yml
@@ -74,6 +73,9 @@ jobs:
         run: npm ci
       - name: Build with Next.js
         run: npm run build
+        env:
+          deployment: preview
+          base_path: ${{ steps.pages.outputs.base_path }}
 
       # 使用パッケージに併用できないライセンスが無いかチェック
       # このチェックに失敗したとき、失敗したライセンスがリポジトリのライセンスと適合しているなら--onlyAllowを修正していい。

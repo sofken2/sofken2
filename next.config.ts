@@ -12,6 +12,19 @@ import rehypeAutolinkHeadings, {type Options as AutolinkOptions} from 'rehype-au
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+
+  // actions/configure-pagesが仕事をしないので以下のurlを参考に自分で
+  // https://github.com/actions/configure-pages/blob/main/src/fixtures/next/default.expected.js
+  ...(process.env.deployment == 'preview' && {
+    output: 'export',
+    basePath: process.env.base_path,
+    images: {
+      unoptimized: true,
+    },
+    env: {
+      deployment: process.env.deployment,
+    },
+  }),
 };
 
 const withMDX = createMDX({
@@ -31,9 +44,4 @@ const withMDX = createMDX({
   },
 });
 
-// actions/configure-pagesを使用するための迂回策
-const nextConfigWithMDX = {
-  ...withMDX(nextConfig),
-};
-
-export default nextConfigWithMDX;
+export default withMDX(nextConfig);
