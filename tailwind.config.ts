@@ -4,6 +4,7 @@ import typographyPlugin from '@tailwindcss/typography';
 import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons';
 import { type ResolvableTo } from 'tailwindcss/types/config';
 import { type CSSProperties } from 'react';
+import plugin from 'tailwindcss/plugin';
 
 const key = (w: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900') => {
   const [name] = Object.entries(defaultTheme.fontWeight ?? {}).find(([, value]) => value === w) ?? ['normal'];
@@ -25,6 +26,10 @@ const config = {
       collectionNamesAlias: {
         'material-symbols-light': 'mslight',
       },
+    }),
+    plugin(({ addVariant }) => {
+      addVariant('hover', '@media (hover: hover) { &:hover }');
+      addVariant('hocus', '@media (hover: hover) { &:is(:hover, :focus-visible) }');
     }),
   ],
   theme: {

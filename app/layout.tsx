@@ -24,14 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className="has-[#theme-dark:checked]:[color-scheme:dark_only] has-[#theme-light:checked]:[color-scheme:light_only]">
       <body className={`min-h-screen ${mplus.variable} font-sans font-light antialiased bg-[url('https://picsum.photos/seed/eternalcore/1920/1200?grayscale')] bg-cover`}>
 
         <header className="flex flex-row sticky top-0 z-10 text-white backdrop-blur-sm backdrop-brightness-50 border-b-white border-b-2 max-md:flex-col max-md:items-center">
           <Link href="/" className="h-24">
             <Image src={logo_dark} alt="二部ソフトウェア研究部" className="px-16 py-4 h-full w-fit object-contain" />
           </Link>
-          <ul className="nav h-24 ms-auto flex flex-row gap-1 max-md:h-12 *:max-md:flex-1 max-md:w-full">
+          <ul className="nav h-24 ms-auto flex flex-row gap-1 max-md:h-12 *:max-md:flex-1 max-md:w-full border-white max-md:border-t-[1px]">
             <li><Link href="/about">About Us</Link></li>
             <li><Link href="/news">News</Link></li>
             <li><Link href="/blog">Blog</Link></li>
@@ -39,9 +39,24 @@ export default function RootLayout({
           </ul>
         </header>
 
-        <main className="max-w-screen-sm min-h-full mx-auto bg-white bg-opacity-80 p-8 -mt-24 pt-24 -mb-60 pb-60 max-md:-mt-36 max-md:pt-36 max-md:max-w-full lg:max-w-screen-md">
+        <main className="max-w-screen-sm min-h-full mx-auto bg-white bg-opacity-80 p-8 -mt-24 pt-24 -mb-60 pb-60 max-md:-mt-36 max-md:pt-36 max-md:max-w-full lg:max-w-screen-md dark:bg-slate-800">
           {children}
         </main>
+
+        <div className="fixed inset-y-0 right-4 m-auto size-10 p-1 bg-black text-white bg-opacity-75 [&_input]:sr-only group/theme">
+          <label className="sr-only group-has-[#theme-light:checked]/theme:not-sr-only">
+            <input type="radio" name="color-scheme" id="theme-system" defaultChecked />
+            <span className="size-8 icon-mslight-brightness-auto-outline"></span>
+          </label>
+          <label className="sr-only group-has-[#theme-system:checked]/theme:not-sr-only">
+            <input type="radio" name="color-scheme" id="theme-dark" />
+            <span className="size-8 icon-mslight-light-mode-outline"></span>
+          </label>
+          <label className="sr-only group-has-[#theme-dark:checked]/theme:not-sr-only">
+            <input type="radio" name="color-scheme" id="theme-light" />
+            <span className="size-8 icon-mslight-dark-mode-outline"></span>
+          </label>
+        </div>
 
         <footer className="h-60 flex flex-row gap-6 flex-wrap items-center justify-center backdrop-blur-sm backdrop-brightness-50 text-white">
           <Link href="/" className="flex flex-row align-baseline max-md:hidden">
@@ -81,7 +96,7 @@ export default function RootLayout({
           </a>
         </footer>
 
-        {process.env.deployment == 'preview' && <label className="fixed bottom-4 right-4 w-min self-center p-2 bg-[repeating-linear-gradient(135deg,black_0px,black_20px,yellow_20px,yellow_40px)] transition-all duration-500 has-[#preview-tip:checked]:translate-x-full has-[#preview-tip:checked]:opacity-20">
+        {process.env.deployment == 'preview' && <label className="fixed bottom-4 right-4 w-min self-center p-2 bg-[repeating-linear-gradient(135deg,black_0px,black_20px,yellow_20px,yellow_40px)] transition-all duration-500 has-[#preview-tip:checked]:translate-x-full has-[#preview-tip:checked]:opacity-20 cursor-pointer">
           <input type="checkbox" id="preview-tip" name="隠す" className="sr-only" />
           <span className="flex flex-row items-center self-center bg-slate-600 px-2 py-1 text-white">
             <span className="icon-material-symbols-light-construction text-4xl me-2"></span>
@@ -89,7 +104,7 @@ export default function RootLayout({
           </span>
         </label>}
 
-        {process.env.NODE_ENV !== 'production' && <div className="fixed inset-0 m-auto size-max text-4xl select-none">
+        {false && process.env.NODE_ENV !== 'production' && <div className="fixed inset-0 m-auto size-max text-4xl select-none">
           <span className="sm:after:content-['sm'] md:after:content-['md'] lg:after:content-['lg'] xl:after:content-['xl']" />
           <span> / </span>
           <span className="max-sm:after:content-['max-sm'] max-md:after:content-['max-md'] max-lg:after:content-['max-lg'] max-xl:after:content-['max-xl']" />

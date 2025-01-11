@@ -65,5 +65,7 @@
     ],
     "files.associations": {
         "*.css": "tailwindcss"
-    }
+    },
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 100
 }

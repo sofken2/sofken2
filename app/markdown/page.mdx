@@ -1,6 +1,6 @@
 import Script from 'next/script';
 import Image from 'next/image';
-import {logo_light} from '../res/logo';
+import { logo_light, logo_dark } from '../res/logo';
 
 # Markdown実装テスト兼チートシート
 
@@ -75,7 +75,8 @@ pub main() {
 [そしてこれがアンカーにジャンプするリンク](#anchor-here)
 
 画像はこう
-<Image src={logo_light} title="ソフ研ロゴ" alt="代替テキストをここに" />
+<Image src={logo_light} title="ソフ研ロゴ" alt="代替テキストをここに" className="block dark:hidden" />
+<Image src={logo_dark} title="ソフ研ロゴ" alt="代替テキストをここに" className="hidden dark:block" />
 本当はこう↓とも書けるどImageコンポーネントを使うことができない
 ```md
 ![代替テキストをここに](../res/logo_light_trimmed.png ソフ研ロゴ)
