@@ -11,7 +11,16 @@ const key = (w: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | 
   return `fontWeight.${name}`;
 };
 
+const preview = process.env.deployment === 'preview';
+const development = process.env.NODE_ENV !== 'production';
+
 const config = {
+  ...((development || preview) && {
+    darkMode: ['variant', [
+      '@media (prefer-color-scheme: dark) { & }',
+      '@container style(--tw-color-scheme: dark) { & }',
+    ]],
+  }),
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
