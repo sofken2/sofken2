@@ -25,25 +25,51 @@ body {
     text-wrap: balance;
   }
 }
+
 .nav a {
-  @apply h-full flex flex-row items-center p-8;
-  @apply shadow-white hover:shadow-white shadow-[inset_0_-2px_0_0] hover:shadow-[inset_0_-6rem_0_0];
-  @apply hover:text-black transition-all duration-500 ease-in-out;
+  @apply block min-w-max h-full px-8 text-center content-center max-md:px-0 max-lg:px-4;
+  @apply text-white hocus:text-black transition-all duration-500 ease-in-out;
+  @apply [box-shadow:inset_0_-2px_white] hocus:[box-shadow:inset_0_calc(-1*theme(spacing.24))_white] max-md:hocus:[box-shadow:inset_0_calc(-1*theme(spacing.12))_white];
 }
 
 .prose {
-  h1 { @apply border-blue-400 border-b-4 pb-1 before:content-["#"] before:me-1 after:content-["//_Level_1"] after:ms-1 after:text-sm; ; }
-  h2 { @apply border-blue-400 border-b-4 pb-1 before:content-["#"] before:me-1 after:content-["//_Level_2"] after:ms-1 after:text-sm; ; }
-  h3 { @apply border-blue-400 border-b-2 pb-1 before:content-["#"] before:me-1 after:content-["//_Level_3"] after:ms-1 after:text-xs; ; }
-  h4 { @apply border-blue-400 border-b-2 pb-1 before:content-["#"] before:me-1 after:content-["//_Level_4"] after:ms-1 after:text-xs; ; }
-  h5 { @apply border-blue-400 border-b-2 before:content-["#"] before:me-1 after:content-["//_Level_5"] after:ms-1 after:text-xs; }
-  h6 { @apply border-blue-400 border-b-2 before:content-["#"] before:me-1 after:content-["//_Level_6"] after:ms-1 after:text-xs; }
+  :is(h1, h2, h3, h4, h5, h6) {
+    @apply relative before:content-["#"] before:me-1;
+
+    a {
+      @apply mx-2 align-middle overflow-hidden after:icon-mdi-light-link-variant opacity-0;
+    }
+    &:hover a {
+      @apply opacity-100;
+    }
+  }
+  h1 { @apply border-blue-400 border-b-4 pb-1; }
+  h2 { @apply border-blue-400 border-b-4 pb-1; }
+  h3 { @apply border-blue-400 border-b-2 pb-1; }
+  h4 { @apply border-blue-400 border-b-2 pb-1; }
+  h5 { @apply border-blue-400 border-b-[1px]; }
+  h6 { @apply border-blue-400 border-b-[1px]; }
+
+  a[href^='http'] {
+    @apply after:icon-mslight-open-in-new after:mx-0.5 after:align-middle;
+  }
 }
 
-.icon-link {
-  @apply text-sm icon-mdi-light-link-variant mx-0.5 align-middle;
+:is(code, pre)[data-theme*=" "],
+:is(code, pre)[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
 }
 
-a[href^='http'] {
-  @apply after:icon-material-symbols-light-open-in-new after:mx-0.5 after:align-middle;
+@media (prefers-color-scheme: dark) {
+  :is(code, pre)[data-theme*=" "],
+  :is(code, pre)[data-theme*=" "] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+}
+
+:root { --tw-color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root { --tw-color-scheme: dark; }
 }

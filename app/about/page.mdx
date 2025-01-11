@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { logo_light } from '../res/logo';
+import { logo_light, logo_dark } from '../res/logo';
 
-<Image src={logo_light} alt="2部ソフのロゴ" title="2部ソフのロゴ" className="px-16 my-8" />
+<Image src={logo_light} alt="2部ソフのロゴ" title="2部ソフのロゴ" className="px-16 my-8 block dark:hidden" />
+<Image src={logo_dark} alt="2部ソフのロゴ" title="2部ソフのロゴ" className="px-16 my-8 hidden dark:block" />
 
 # About Us
 

@@ -62,5 +62,10 @@
         ["[Cc]lassName\\s*:\\s*'([^']*)'", "(.*)"],
         ["[Cc]lassName\\s*:\\s*\"([^\"]*)\"", "(.*)"],
         ["[Cc]lassName\\s*:\\s*\\`([^\\`]*)\\`", "(.*)"]
-    ]
+    ],
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 100
 }

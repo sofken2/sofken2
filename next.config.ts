@@ -37,9 +37,9 @@ const withMDX = createMDX({
     ],
     rehypePlugins: [
       [rehypeKatex, { strict: true, throwOnError: true, output: 'mathml' } satisfies KatexOptions],
-      [rehypePrettyCode, { theme: 'light-plus' } satisfies ShikiOptions],
+      [rehypePrettyCode, { theme: { light: 'light-plus', dark: 'dark-plus' } } satisfies ShikiOptions],
       [rehypeSlug, {} satisfies SlugOptions],
-      [rehypeAutolinkHeadings, {behavior: 'append'} satisfies AutolinkOptions],
+      [rehypeAutolinkHeadings, { behavior: 'append' } satisfies AutolinkOptions],
     ],
   },
 });
