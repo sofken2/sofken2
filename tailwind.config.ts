@@ -40,6 +40,66 @@ const config = {
       addVariant('hover', '@media (hover: hover) { &:hover }');
       addVariant('hocus', '@media (hover: hover) { &:is(:hover, :focus-visible) }');
     }),
+    plugin(({ addVariant, addBase, addUtilities }) => {
+      addBase({
+        '@property --scroll-pos': {
+          'syntax': '"<number>"',
+          'inherits': 'true',
+          'initial-value': '0',
+        },
+        '@property --scroll-pos-delayed': {
+          'syntax': '"<number>"',
+          'inherits': 'true',
+          'initial-value': '0',
+        },
+        '@property --scroll-dir': {
+          'syntax': '"<number>"',
+          'inherits': 'true',
+          'initial-value': '0',
+        },
+        '@property --scrolling-up': {
+          'syntax': '"<integer>"',
+          'inherits': 'true',
+          'initial-value': '0',
+        },
+        '@property --scrolling-down': {
+          'syntax': '"<integer>"',
+          'inherits': 'true',
+          'initial-value': '0',
+        },
+        '@keyframes scroll-pos': {
+          'to': {
+            '--scroll-pos': '1',
+            '--scroll-pos-delayed': '1',
+          },
+        },
+      });
+      addUtilities({
+        '.scroll-container': {
+          'animation': 'scroll-pos linear both',
+          'animation-timeline': 'scroll(root)',
+          '& > *': {
+            'transition': '--scroll-pos-delayed 0.15s linear',
+            '--scroll-vel': 'calc(var(--scroll-pos) - var(--scroll-pos-delayed))',
+            // '--scroll-speed': 'abs(var(--scroll-vel))',
+            // '--scroll-dir': 'sign(var(--scroll-vel))',
+            '--scroll-speed': 'max(var(--scroll-vel), -1 * var(--scroll-vel))',
+            '--scroll-dir': 'calc(round(up, var(--scroll-vel)) + round(down, var(--scroll-vel)))',
+            '--scrolling-up': 'round(up, -1 * var(--scroll-vel))',
+            '--scrolling-down': 'round(up, var(--scroll-vel))',
+          },
+        },
+      });
+
+      addVariant('scrolling', '@container not style(--scroll-dir: 0.0)');
+      addVariant('scrolling-up', '@container style(--scroll-dir: -1.0)');
+      addVariant('scrolling-down', '@container style(--scroll-dir: +1.0)');
+      addVariant('not-scrolling', '@container style(--scroll-dir: 0.0)');
+      addVariant('at-page-top', '@container style(--scroll-pos: 0.0)');
+      addVariant('not-at-page-top', '@container not style(--scroll-pos: 0.0)');
+      addVariant('at-page-bottom', '@container style(--scroll-pos: 1.0)');
+      addVariant('not-at-page-bottom', '@container not style(--scroll-pos: 1.0)');
+    }),
   ],
   theme: {
     extend: {

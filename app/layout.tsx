@@ -27,14 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={(development || preview) ? 'has-[#theme-dark:checked]:[color-scheme:dark] has-[#theme-dark:checked]:[--tw-color-scheme:dark] has-[#theme-light:checked]:[color-scheme:light] has-[#theme-light:checked]:[--tw-color-scheme:light]' : undefined}>
+    <html lang="ja" className={`scroll-container${(development || preview) ? ' has-[#theme-dark:checked]:[color-scheme:dark] has-[#theme-dark:checked]:[--tw-color-scheme:dark] has-[#theme-light:checked]:[color-scheme:light] has-[#theme-light:checked]:[--tw-color-scheme:light]' : ''}`}>
       <body className={`min-h-screen ${mplus.variable} font-sans font-light antialiased bg-[url('https://picsum.photos/seed/eternalcore/1920/1200?grayscale')] bg-cover`}>
 
-        <header className="flex flex-row sticky top-0 z-10 text-white backdrop-blur-sm backdrop-brightness-50 border-b-white border-b-2 max-md:flex-col max-md:items-center">
-          <Link href="/" className="h-24">
-            <Image src={logo_dark} alt="二部ソフトウェア研究部" className="px-16 py-4 h-full w-fit object-contain" />
+        <header className="flex flex-row fixed inset-x-0 top-0 z-10 text-white backdrop-blur-sm backdrop-brightness-50 border-b-white border-b-2 max-md:flex-col max-md:items-center max-md:not-at-page-top:-translate-y-24 transition-all delay-200 duration-500">
+          <Link href="/" className="h-24 md:not-at-page-top:h-16 transition-all delay-200 duration-500">
+            <Image src={logo_dark} alt="二部ソフトウェア研究部" className="px-16 py-4 h-full w-fit object-contain md:not-at-page-top:py-2 md:not-at-page-top:px-24 transition-all delay-200 duration-500" />
           </Link>
-          <ul className="nav h-24 ms-auto flex flex-row gap-1 max-md:h-12 *:max-md:flex-1 max-md:w-full border-white max-md:border-t-[1px]">
+          <ul className="nav h-24 ms-auto flex flex-row gap-1 max-md:h-12 *:max-md:flex-1 max-md:w-full border-white max-md:border-t-[1px] not-at-page-top:h-16 transition-all  delay-200 duration-500">
             <li><Link href="/about">About Us</Link></li>
             <li><Link href="/news">News</Link></li>
             <li><Link href="/blog">Blog</Link></li>
@@ -42,7 +42,7 @@ export default function RootLayout({
           </ul>
         </header>
 
-        <main className="max-w-screen-sm min-h-full mx-auto bg-white bg-opacity-80 p-8 -mt-24 pt-24 -mb-60 pb-60 max-md:-mt-36 max-md:pt-36 max-md:max-w-full lg:max-w-screen-md dark:bg-slate-800">
+        <main className="max-w-screen-sm min-h-full mx-auto bg-white bg-opacity-80 p-8 pt-24 -mb-60 pb-60 max-md:pt-36 max-md:max-w-full lg:max-w-screen-md dark:bg-slate-800">
           {children}
         </main>
 
@@ -85,7 +85,7 @@ export default function RootLayout({
         </footer>
 
         {preview && <label className="fixed bottom-4 right-4 w-min self-center p-2 bg-[repeating-linear-gradient(135deg,black_0px,black_20px,yellow_20px,yellow_40px)] transition-all duration-500 has-[#preview-tip:checked]:translate-x-full has-[#preview-tip:checked]:opacity-20 cursor-pointer">
-          <input type="checkbox" id="preview-tip" name="隠す" className="sr-only" />
+          <input type="checkbox" id="preview-tip" name="hide-preview-tip" className="sr-only" />
           <span className="flex flex-row items-center self-center bg-slate-600 px-2 py-1 text-white">
             <span className="icon-material-symbols-light-construction text-4xl me-2"></span>
             <span className="first-line:text-lg first-line:leading-none text-xs w-min">Preview<br />Under Construction</span>
@@ -112,6 +112,19 @@ export default function RootLayout({
             <span className="size-8 icon-mslight-dark-mode-outline"></span>
           </label>
         </div>}
+
+        {(development || preview) && <label className="fixed inset-y-0 left-4 m-auto size-max min-w-40 p-1 bg-black text-white bg-opacity-75 transition-all duration-500 has-[#scroll-tip:checked]:-translate-x-full has-[#scroll-tip:checked]:opacity-20 has-[#scroll-tip:checked]:pe-4 cursor-pointer">
+          <input type="checkbox" id="scroll-tip" name="hide-scroll-tip" className="sr-only" defaultChecked />
+
+          <div className="w-full relative after:absolute after:inset-x-0 after:bottom-0 after:h-[1px] after:bg-white after:origin-left after:scale-x-[--scroll-pos]">scroll-position</div>
+          <div className="w-full relative after:absolute after:right-0 after:left-1/2 after:bottom-0 after:h-[1px] after:bg-white after:origin-left after:scale-x-[--scroll-vel]">scroll-velocity</div>
+          <div className="not-scrolling:bg-white not-scrolling:text-black">state: stopped</div>
+          <div className="scrolling:bg-white scrolling:text-black">state: scrolling</div>
+          <div className="scrolling-up:bg-white scrolling-up:text-black">direction: up</div>
+          <div className="scrolling-down:bg-white scrolling-down:text-black">direction:-down</div>
+          <div className="at-page-top:bg-white at-page-top:text-black">scroll pos: top</div>
+          <div className="at-page-bottom:bg-white at-page-bottom:text-black">scroll pos: bottom</div>
+        </label>}
       </body>
     </html>
   );
