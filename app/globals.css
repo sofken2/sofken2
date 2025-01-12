@@ -20,18 +20,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-.nav a {
-  @apply block min-w-max h-full px-8 text-center content-center max-md:px-0 max-lg:px-4;
-  @apply text-white hocus:text-black transition-all duration-500 ease-in-out;
-  @apply [box-shadow:inset_0_-2px_white] hocus:[box-shadow:inset_0_calc(-1*theme(spacing.24))_white] max-md:hocus:[box-shadow:inset_0_calc(-1*theme(spacing.12))_white];
-}
-
 .prose {
   :is(h1, h2, h3, h4, h5, h6) {
     @apply relative before:content-["#"] before:me-1;
@@ -55,18 +43,12 @@ body {
   }
 }
 
-:is(code, pre)[data-theme*=" "],
-:is(code, pre)[data-theme*=" "] span {
-  color: var(--shiki-light);
-  background-color: var(--shiki-light-bg);
+:is(code, pre)[data-theme*=" "] {
+  @apply bg-[--shiki-light-bg] dark:bg-[--shiki-dark-bg];
 }
 
-@media (prefers-color-scheme: dark) {
-  :is(code, pre)[data-theme*=" "],
-  :is(code, pre)[data-theme*=" "] span {
-    color: var(--shiki-dark);
-    background-color: var(--shiki-dark-bg);
-  }
+:is(code, pre)[data-theme*=" "] span {
+  @apply text-[--shiki-light] dark:text-[--shiki-dark];
 }
 
 :root { --tw-color-scheme: light; }
