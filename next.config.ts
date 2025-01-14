@@ -9,9 +9,14 @@ import remarkBreaks from 'remark-breaks';
 import remarkToc, { type Options as TocOptions } from 'remark-toc';
 import rehypeSlug, { type Options as SlugOptions } from 'rehype-slug';
 import rehypeAutolinkHeadings, {type Options as AutolinkOptions} from 'rehype-autolink-headings';
+import remarkFrontmatter, { type Options as FrontmatterOptions } from 'remark-frontmatter';
+import remarkMdxFrontmatter, { type RemarkMdxFrontmatterOptions } from 'remark-mdx-frontmatter';
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  experimental: {
+    typedRoutes: true,
+  },
 
   // actions/configure-pagesが仕事をしないので以下のurlを参考に自分で
   // https://github.com/actions/configure-pages/blob/main/src/fixtures/next/default.expected.js
@@ -34,6 +39,8 @@ const withMDX = createMDX({
       [remarkMath, {} satisfies MathOptions],
       [remarkBreaks, {}],
       [remarkToc, { heading: '目次|もくじ|(table[ -]of[ -])?contents?|toc', ordered: true } satisfies TocOptions],
+      [remarkFrontmatter, { type: 'yaml', marker: '-' } satisfies FrontmatterOptions],
+      [remarkMdxFrontmatter, { name: 'meta' } satisfies RemarkMdxFrontmatterOptions],
     ],
     rehypePlugins: [
       [rehypeKatex, { strict: true, throwOnError: true, output: 'mathml' } satisfies KatexOptions],
