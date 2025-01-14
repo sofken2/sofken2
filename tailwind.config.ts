@@ -144,7 +144,18 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-source-sans)', 'var(--font-mplus-1)', ...defaultTheme.fontFamily.sans],
+        // kazesawa: [
+        //   ['var(--font-source-sans)', 'var(--font-mplus-1)', 'Kazesawa', ...defaultTheme.fontFamily.sans],
+        //   { fontFeatureSettings: "'palt'" },
+        // ],
+        sans: [
+          ['var(--font-noto-sans)', 'Yu Gothic', ...defaultTheme.fontFamily.sans],
+          { fontFeatureSettings: "'palt'" },
+        ],
+        // serif: [
+        //   ['var(--font-noto-serif)', 'Yu Mincho', ...defaultTheme.fontFamily.serif],
+        //   { fontFeatureSettings: "'palt'" },
+        // ],
       },
       colors: {
         background: 'var(--background)',

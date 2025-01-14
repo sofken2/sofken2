@@ -2,24 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { M_PLUS_1p, M_PLUS_1, Source_Sans_3 } from 'next/font/google';
-
 import { logo_dark } from './res/logo';
 import { clsx } from './utils';
-
-const mplusp = M_PLUS_1p({
-  variable: '--font-mplus-1p',
-  subsets: ['latin'],
-  weight: ['100', '300', '400', '500', '700', '800', '900'],
-});
-const mplus = M_PLUS_1({
-  variable: '--font-mplus-1',
-  subsets: ['latin'],
-});
-const source = Source_Sans_3({
-  variable: '--font-source-sans',
-  subsets: ['latin'],
-});
+import { font_variables } from './res/fonts';
 
 export const metadata: Metadata = {
   title: '2部ソフ研',
@@ -36,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={clsx(`scroll-container`, (development || preview) && 'has-[#theme-dark:checked]:[color-scheme:dark] has-[#theme-dark:checked]:[--tw-color-scheme:dark] has-[#theme-light:checked]:[color-scheme:light] has-[#theme-light:checked]:[--tw-color-scheme:light]')}>
-      <body className={`min-h-screen bg-[url('https://picsum.photos/seed/eternalcore/1920/1200?grayscale')] bg-cover font-sans font-light antialiased ${mplus.variable} ${mplusp.variable} ${source.variable}`}>
+    <html lang="ja" className={clsx(`scroll-container`, (development || preview) && 'has-[#theme-dark:checked]:[color-scheme:dark] has-[#theme-dark:checked]:[--tw-color-scheme:dark] has-[#theme-light:checked]:[color-scheme:light] has-[#theme-light:checked]:[--tw-color-scheme:light]', font_variables)}>
+      <body className="min-h-screen bg-[url('https://picsum.photos/seed/eternalcore/1920/1200?grayscale')] bg-cover font-sans font-light antialiased">
 
         <header className="flex flex-row fixed inset-x-0 top-0 z-10 text-white backdrop-blur-sm backdrop-brightness-50 border-b-white border-b-2 max-md:flex-col max-md:items-center max-md:not-at-page-top:-translate-y-24 transition-all delay-200 duration-500">
           <Link href="/" className="h-24 md:not-at-page-top:h-16 transition-all delay-200 duration-500">
@@ -55,11 +40,11 @@ export default function RootLayout({
           </ul>
         </header>
 
-        <main className="max-w-screen-sm min-h-full mx-auto bg-white bg-opacity-80 p-8 pt-24 -mb-60 pb-60 max-md:pt-36 max-md:max-w-full lg:max-w-screen-md dark:bg-slate-800">
+        <main className="max-w-screen-sm min-h-full mx-auto bg-white/80 p-8 pt-24 -mb-60 pb-60 max-md:pt-36 max-md:max-w-full lg:max-w-screen-md dark:bg-slate-800">
           {children}
         </main>
 
-        <footer className="h-60 flex flex-row gap-6 flex-wrap items-center justify-center backdrop-blur-sm backdrop-brightness-50 text-white">
+        <footer className="h-60 flex flex-row gap-6 flex-wrap items-center justify-center content-center backdrop-blur-sm backdrop-brightness-50 text-white">
           <Link href="/" className="flex flex-row align-baseline max-md:hidden">
             <Image src={logo_dark} alt="二部ソフトウェア研究部" className="w-64" />
           </Link>
@@ -80,15 +65,10 @@ export default function RootLayout({
             href: 'https://x.com/sofken2',
             icon: 'icon-uit-twitter-alt',
           }] as const).map(({ title, href, icon }) => (
-            <a
-              key={title}
-              className="flex items-center hover:underline underline-offset-4"
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer">
+            <a key={title} className="flex items-center hover:underline underline-offset-4" href={href} target="_blank" rel="noopener noreferrer">
               <span className={`${icon} size-4 me-2`} />
-              {title}
-              <span className="icon-mslight-open-in-new size-4" />
+              <span className="font-thin">{title}</span>
+              <span className="icon-mslight-open-in-new size-4 translate-y-px" />
             </a>
           ))}
         </footer>
@@ -98,7 +78,7 @@ export default function RootLayout({
           <div className="flex flex-row items-center self-center bg-slate-600 px-2 py-1 text-white">
             <span className="icon-mslight-construction text-4xl me-2"></span>
             <div>
-              <div className="text-lg leading-none">Preview</div>
+              <div className="text-lg/none">Preview</div>
               <div className="text-xs">Under Construction</div>
             </div>
           </div>
@@ -119,7 +99,7 @@ export default function RootLayout({
             <label key={name} className="size-8 p-1.5 rounded-full cursor-pointer relative group">
               <input type="radio" name="color-scheme" className="absolute inset-0 rounded-full appearance-none" id={name} defaultChecked={checked} />
               <span className="sr-only">{desc}</span>
-              <span aria-hidden="true" className="absolute inset-y-0 -left-2 m-auto px-2 size-max -translate-x-full invisible group-hover:visible bg-black/80 rounded-full text-sm device-touch:group-active:delay-0 device-touch:group-has-[:checked]:delay-1000 select-none">{desc}</span>
+              <span aria-hidden="true" className="absolute inset-y-0 -left-2 m-auto px-2 py-1 size-max -translate-x-full invisible group-hover:visible bg-black/80 rounded-full text-sm/none device-touch:group-active:delay-0 device-touch:group-has-[:checked]:delay-1000 select-none">{desc}</span>
               <span className={`size-full ${icon} group-hover:scale-125 transition-all`} />
             </label>
           ))}
