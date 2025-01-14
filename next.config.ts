@@ -14,9 +14,6 @@ import remarkMdxFrontmatter, { type RemarkMdxFrontmatterOptions } from 'remark-m
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  experimental: {
-    typedRoutes: true,
-  },
 
   // actions/configure-pagesが仕事をしないので以下のurlを参考に自分で
   // https://github.com/actions/configure-pages/blob/main/src/fixtures/next/default.expected.js

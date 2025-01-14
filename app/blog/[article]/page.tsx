@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { articles } from '../page';
+import { articles } from '../utils';
 
 export default async function Article({ params }: { params: Promise<{ article: string }> }) {
   const { article: articleName } = await params;
@@ -18,5 +18,5 @@ export default async function Article({ params }: { params: Promise<{ article: s
 export async function generateStaticParams() {
   const list = await articles();
 
-  return list.map(({ name }) => ({ name }));
+  return list.map(({ name }) => ({ article: name }));
 }
