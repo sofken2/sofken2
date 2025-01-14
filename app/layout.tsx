@@ -63,38 +63,34 @@ export default function RootLayout({
           <Link href="/" className="flex flex-row align-baseline max-md:hidden">
             <Image src={logo_dark} alt="二部ソフトウェア研究部" className="w-64" />
           </Link>
-          <a
-            className="flex items-center hover:underline underline-offset-4"
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer">
-            <span className="icon-mslight-document-search-outline size-4 me-2" />
-            Learn
-          </a>
-          <a
-            className="flex items-center hover:underline underline-offset-4"
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer">
-            <span className="icon-mslight-select-window-2-outline me-2" />
-            Examples
-          </a>
-          <a
-            className="flex items-center hover:underline underline-offset-4"
-            href="https://github.com/sofken2/sofken2"
-            target="_blank"
-            rel="noopener noreferrer">
-            <span className="icon-uit-github-alt me-2" />
-            GitHub
-          </a>
-          <a
-            className="flex items-center hover:underline underline-offset-4"
-            href="https://x.com/sofken2"
-            target="_blank"
-            rel="noopener noreferrer">
-            <span className="icon-uit-twitter-alt me-2" />
-            Twitter
-          </a>
+          {([{
+            title: 'Learn',
+            href: 'https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app',
+            icon: 'icon-mslight-document-search-outline',
+          }, {
+            title: 'Example',
+            href: 'https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app',
+            icon: 'icon-mslight-select-window-2-outline',
+          }, {
+            title: 'GitHub',
+            href: 'https://github.com/sofken2/sofken2',
+            icon: 'icon-uit-github-alt',
+          }, {
+            title: 'Twitter',
+            href: 'https://x.com/sofken2',
+            icon: 'icon-uit-twitter-alt',
+          }] as const).map(({ title, href, icon }) => (
+            <a
+              key={title}
+              className="flex items-center hover:underline underline-offset-4"
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer">
+              <span className={`${icon} size-4 me-2`} />
+              {title}
+              <span className="icon-mslight-open-in-new size-4" />
+            </a>
+          ))}
         </footer>
 
         {(preview) && <label className="fixed bottom-4 right-4 w-max self-center p-2 bg-[repeating-linear-gradient(135deg,black_0px,black_20px,yellow_20px,yellow_40px)] transition-all duration-500 has-[#preview-tip:checked]:translate-x-full has-[#preview-tip:checked]:opacity-20 cursor-pointer">
@@ -122,7 +118,8 @@ export default function RootLayout({
           ] as const).map(([name, icon, desc, checked]) => (
             <label key={name} className="size-8 p-1.5 rounded-full cursor-pointer relative group">
               <input type="radio" name="color-scheme" className="absolute inset-0 rounded-full appearance-none" id={name} defaultChecked={checked} />
-              <span className="absolute inset-y-0 -left-2 m-auto px-2 size-max -translate-x-full invisible group-hover:visible bg-black/80 rounded-full text-sm device-touch:group-active:delay-0 device-touch:group-has-[:checked]:delay-1000 select-none">{desc}</span>
+              <span className="sr-only">{desc}</span>
+              <span aria-hidden="true" className="absolute inset-y-0 -left-2 m-auto px-2 size-max -translate-x-full invisible group-hover:visible bg-black/80 rounded-full text-sm device-touch:group-active:delay-0 device-touch:group-has-[:checked]:delay-1000 select-none">{desc}</span>
               <span className={`size-full ${icon} group-hover:scale-125 transition-all`} />
             </label>
           ))}

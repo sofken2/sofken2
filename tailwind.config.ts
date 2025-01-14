@@ -31,22 +31,52 @@ const config = {
       },
     }),
     plugin(({ addVariant }) => {
-      addVariant('hover', [
-        '@media (hover: hover) { &:is(:hover, :focus-visible) }',
-        '@media (hover: none) { &:is(:active, :focus-visible) }',
+      // hover or focus-visible-within
+      const hover = 'is(:hover, :focus-visible, :has(:focus-visible))';
+      // active-within or focus-visible-within
+      const active = 'is(:active, :has(:active), :focus-visible, :has(:focus-visible))';
+      // focus-visible-within
+      const focus = 'is(:focus-visible, :has(:focus-visible))';
+
+      addVariant(`hover`, [
+        `@media (hover: hover) { &:${hover} }`,
+        `@media (hover: none) { &:${active} }`,
       ]);
-      addVariant('group-hover', [
-        '@media (hover: hover) { .group:is(:hover, :focus-visible) & }',
-        '@media (hover: none) { .group:is(:active, :focus-visible) & }',
+      addVariant(`group-hover`, [
+        `@media (hover: hover) { :merge(.group):${hover} & }`,
+        `@media (hover: none) { :merge(.group):${active} & }`,
       ]);
-      addVariant('hocus', [
-        '@media (hover: hover) { &:is(:hover, :focus-visible) }',
-        '@media (hover: none) { &:focus-visible }',
+      addVariant(`peer-hover`, [
+        `@media (hover: hover) { :merge(.peer):${hover} ~ & }`,
+        `@media (hover: none) { :merge(.peer):${active} ~ & }`,
       ]);
-      addVariant('group-hocus', [
-        '@media (hover: hover) { .group:is(:hover, :focus-visible) & }',
-        '@media (hover: none) { .group:focus-visible & }',
+      addVariant(`not-hover`, [
+        `@media (hover: hover) { &:not(:${hover}) }`,
+        `@media (hover: none) { &:not(:${active}) }`,
       ]);
+      addVariant(`group-not-hover`, [
+        `@media (hover: hover) { :merge(.group):not(:${hover}) & }`,
+        `@media (hover: none) { :merge(.group):not(:${active}) & }`,
+      ]);
+      addVariant(`peer-not-hover`, [
+        `@media (hover: hover) { :merge(.peer):not(:${hover}) ~ & }`,
+        `@media (hover: none) { :merge(.peer):not(:${active}) ~ & }`,
+      ]);
+      addVariant(`hocus`, [
+        `@media (hover: hover) { &:${hover} }`,
+        `@media (hover: none) { &:${focus} }`,
+      ]);
+      addVariant(`group-hocus`, [
+        `@media (hover: hover) { :merge(.group):${hover} & }`,
+        `@media (hover: none) { :merge(.group):${focus} & }`,
+      ]);
+      addVariant(`peer-hocus`, [
+        `@media (hover: hover) { :merge(.peer):${hover} ~ & }`,
+        `@media (hover: none) { :merge(.peer):${focus} ~ & }`,
+      ]);
+      addVariant('active', '&:is(:active, :has(:active))');
+      addVariant('group-active', ':merge(.group):is(:active, :has(:active)) &');
+      addVariant('peer-active', ':merge(.peer):is(:active, :has(:active)) ~ &');
       addVariant('device-hover', '@media (hover: hover)');
       addVariant('device-touch', '@media (hover: none)');
     }),
