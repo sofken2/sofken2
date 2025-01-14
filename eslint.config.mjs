@@ -28,6 +28,10 @@ const eslintConfig = [
   {
     name: '@stylistic/override',
     rules: {
+      '@stylistic/quotes': ['error', 'single', {
+        'avoidEscape': true,
+        'allowTemplateLiterals': true,
+      }],
       '@stylistic/jsx-closing-tag-location': ['error', 'line-aligned'],
       '@stylistic/jsx-closing-bracket-location': ['error', 'after-props'],
       '@stylistic/jsx-one-expression-per-line': 'off',
