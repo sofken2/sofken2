@@ -1,4 +1,4 @@
-import { articles } from './utils';
+import { articles } from './articles';
 import ArticleList from './ArticleList';
 
 export default async function BlogPage() {

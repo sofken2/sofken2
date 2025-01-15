@@ -1,17 +1,17 @@
 import { notFound } from 'next/navigation';
-import { articles } from '../utils';
+import { articles } from '../articles';
+import TagList from '../TagList';
 
 export default async function Article({ params }: { params: Promise<{ article: string }> }) {
   const { article: articleName } = await params;
   const article = (await articles()).find((it) => it.name == articleName);
   if (article == null) return notFound();
 
-  const { default: Page, meta } = await article.page();
-  return (<div className="my-16">
-    <div className="flex flex-row gap-2 bg-slate-300 p-4 rounded-lg">
-      {(meta?.tags ?? []).map((tag) => <span key={tag} className="flex items-center leading-none bg-emerald-300 rounded-full px-2 py-1 before:icon-mdi-light-tag">{tag}</span>)}
-    </div>
-    <Page />
+  const { default: Page, meta, toc } = await article.page();
+
+  return (<div className="prose prose-slate prose-relative-weight prose-theme-override my-16 max-w-full lg:prose-lg dark:prose-invert">
+    <TagList tags={meta?.tags ?? []} />
+    <Page toc={JSON.stringify(toc)} />
   </div>);
 }
 

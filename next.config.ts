@@ -8,9 +8,11 @@ import rehypePrettyCode, { type Options as ShikiOptions } from 'rehype-pretty-co
 import remarkBreaks from 'remark-breaks';
 import remarkToc, { type Options as TocOptions } from 'remark-toc';
 import rehypeSlug, { type Options as SlugOptions } from 'rehype-slug';
-import rehypeAutolinkHeadings, {type Options as AutolinkOptions} from 'rehype-autolink-headings';
+import rehypeAutolinkHeadings, { type Options as AutolinkOptions } from 'rehype-autolink-headings';
 import remarkFrontmatter, { type Options as FrontmatterOptions } from 'remark-frontmatter';
 import remarkMdxFrontmatter, { type RemarkMdxFrontmatterOptions } from 'remark-mdx-frontmatter';
+import rehypeToc from '@stefanprobst/rehype-extract-toc';
+import rehypeExtractToc, {type RehypeExportTocMdxOptions} from '@stefanprobst/rehype-extract-toc/mdx';
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
@@ -44,6 +46,8 @@ const withMDX = createMDX({
       [rehypePrettyCode, { theme: { light: 'light-plus', dark: 'dark-plus' } } satisfies ShikiOptions],
       [rehypeSlug, {} satisfies SlugOptions],
       [rehypeAutolinkHeadings, { behavior: 'append' } satisfies AutolinkOptions],
+      [rehypeToc, {}],
+      [rehypeExtractToc, { name: 'toc' } satisfies RehypeExportTocMdxOptions],
     ],
   },
 });

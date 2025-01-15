@@ -1,5 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { type Toc } from '@stefanprobst/rehype-extract-toc';
+import { type MDXProps, type Element } from 'mdx/types';
 
 export interface Frontmatter {
   id?: string;
@@ -11,8 +13,9 @@ export interface Frontmatter {
 }
 
 export interface MDXArticle {
-  default: React.FC<unknown>;
+  toc: Toc;
   meta?: Frontmatter;
+  default(props: MDXProps): Element;
 }
 
 export interface ArticleData {
@@ -22,12 +25,12 @@ export interface ArticleData {
 }
 
 export async function articles(): Promise<ArticleData[]> {
-  return (await fs.readdir('app/blog'))
+  return (await fs.readdir('posts'))
     .map((it) => path.parse(it))
     .filter((it) => it.ext === '.md' || it.ext === '.mdx')
     .map((it) => ({
       path: it,
       name: it.name,
-      async page() { return import(`./${it.base}`); },
+      async page() { return import(`@/posts/${it.base}`); },
     }));
 }

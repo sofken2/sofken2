@@ -1,8 +1,8 @@
-import { articles } from '@/app/blog/utils';
+import { articles } from '@/app/blog/articles';
 import ArticleList from '@/app/blog/ArticleList';
 
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
-  const { tag } = await params;
+  const tag = decodeURIComponent((await params).tag);
   const list = (await Promise.all(
     (await articles()).map(async (article) => ({
       name: article.name,
