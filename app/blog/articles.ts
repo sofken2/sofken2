@@ -25,12 +25,12 @@ export interface ArticleData {
 }
 
 export async function articles(): Promise<ArticleData[]> {
-  return (await fs.readdir('posts'))
+  return (await fs.readdir('app/posts'))
     .map((it) => path.parse(it))
     .filter((it) => it.ext === '.md' || it.ext === '.mdx')
     .map((it) => ({
       path: it,
       name: it.name,
-      async page() { return import(`@/posts/${it.base}`); },
+      async page() { return import(`@/app/posts/${it.base}`); },
     }));
 }

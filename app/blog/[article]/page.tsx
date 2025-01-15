@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { articles } from '../articles';
 import TagList from '../TagList';
+import Toc from '../Toc';
 
 export default async function Article({ params }: { params: Promise<{ article: string }> }) {
   const { article: articleName } = await params;
@@ -11,7 +12,8 @@ export default async function Article({ params }: { params: Promise<{ article: s
 
   return (<div className="prose prose-slate prose-relative-weight prose-theme-override my-16 max-w-full lg:prose-lg dark:prose-invert">
     <TagList tags={meta?.tags ?? []} />
-    <Page toc={JSON.stringify(toc)} />
+    <Toc toc={toc} min={2} />
+    <Page toc={<Toc toc={toc} min={2} />} />
   </div>);
 }
 

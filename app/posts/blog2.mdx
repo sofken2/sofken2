@@ -1,0 +1,47 @@
+---
+title: 記事の書き方
+auther: rassvet_ii
+date: 2025-01-15
+category: 'blog'
+tags: [ 'dev', 'mdx', 'markdown' ]
+---
+
+# 記事の書き方
+
+{props.toc}
+
+## 記事を書きたくなったら
+
+### PC上で作業する方法
+
+1. `posts`ディレクトリの下に拡張子が`mdx`の形式の好きな名前のファイルを作成してください。
+
+    ```text "ココ！"
+    .
+    ├── app
+    │   ├── posts
+    │   │   ├── blog1.mdx
+    │   │   ├── blog2.mdx
+    │   │   ├── blog3.mdx
+    │   │   └── ココ！
+    ```
+
+2. 作成したファイルを好きなように編集します。
+3. Gitコマンドで変更をコミットしてGitHubにアップロードします。
+
+    ```sh
+    git checkout -b <ブランチ名>
+    git add *.mdx
+    git commit -m '<コミットメッセージ>'
+    git push origin <ブランチ名>
+    ```
+
+4. GitHubでPull Requestを作成してください。
+
+### GitHubで作業する方法
+
+1. [GitHub上で`app/posts`を開いて](https://github.com/sofken2/sofken2/tree/develop/app/posts)ください。
+2. 右上の`Add file`から`Create new file`を選択して、`Name your file……`の部分で拡張子が`mdx`の好きなファイル名を指定してください。
+3. 作成したファイルを好きなように編集します。Previewタブでプレビューできるので活用してください。
+4. 終わったら`Commit changes……`からコミットメッセージを入力して、`Create a new branch……`が選択されていることを確認してから`Propose changes`をクリックしてください。
+5. Pull Request作成画面になるので作成してください。
