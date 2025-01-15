@@ -12,7 +12,7 @@ export default function Toc({
 }) {
   return (<nav className="prose-li:my-1 prose-ol:my-2 prose-ul:my-2 my-8 rounded-md bg-slate-100 p-4">
     <ol>
-      {toc.map(function transform({ id, value, children, depth }) {
+      {toc.map(function transform({ id, value, children, depth }): React.ReactNode {
         if (depth < min) {
           return (children && children.length > 0)
             && children.map(transform);

@@ -7,7 +7,10 @@ import { clsx } from './utils';
 import { font_variables } from './res/fonts';
 
 export const metadata: Metadata = {
-  title: '2部ソフ研',
+  title: {
+    default: '2部ソフ研',
+    template: '%s | 2部ソフ研',
+  },
   description: '東京電機大学2部ソフ研のホームページです。',
   keywords: ['2部ソフ研', 'ソフトウェア研究部', '東京電機大学', 'TDU'],
 };

@@ -2,9 +2,18 @@ import { notFound } from 'next/navigation';
 import { articles } from '../articles';
 import TagList from '../TagList';
 import Toc from '../Toc';
+import { type Metadata } from 'next';
 
-export default async function Article({ params }: { params: Promise<{ article: string }> }) {
-  const { article: articleName } = await params;
+interface PageParams {
+  article: string;
+}
+
+export default async function Article({
+  params,
+}: {
+  params: Promise<PageParams>;
+}) {
+  const articleName = decodeURIComponent((await params).article);
   const article = (await articles()).find((it) => it.name == articleName);
   if (article == null) return notFound();
 
@@ -17,8 +26,22 @@ export default async function Article({ params }: { params: Promise<{ article: s
   </div>);
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<PageParams[]> {
   const list = await articles();
 
   return list.map(({ name }) => ({ article: name }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<PageParams>;
+}): Promise<Metadata> {
+  const articleName = decodeURIComponent((await params).article);
+  const article = (await articles()).find((it) => it.name == articleName);
+  if (article == null) return notFound();
+
+  return {
+    title: (await article.page()).meta?.title ?? article.name,
+  };
 }

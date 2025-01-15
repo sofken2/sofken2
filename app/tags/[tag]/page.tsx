@@ -1,7 +1,12 @@
 import { articles } from '@/app/blog/articles';
 import ArticleList from '@/app/blog/ArticleList';
+import { type Metadata } from 'next';
 
-export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
+interface PageParams {
+  tag: string;
+}
+
+export default async function TagPage({ params }: { params: Promise<PageParams> }) {
   const tag = decodeURIComponent((await params).tag);
   const list = (await Promise.all(
     (await articles()).map(async (article) => ({
@@ -19,7 +24,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
   </div>);
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<PageParams[]> {
   const tags = (await Promise.all(
     (await articles()).map(async (article) => await article.page()),
   )).flatMap((page) => (
@@ -29,4 +34,24 @@ export async function generateStaticParams() {
   }));
 
   return [...new Set(tags)];
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<PageParams>;
+}): Promise<Metadata> {
+  const tag = decodeURIComponent((await params).tag);
+  const list = (await Promise.all(
+    (await articles()).map(async (article) => ({
+      name: article.name,
+      page: await article.page(),
+    })),
+  )).filter((article) => (
+    (article.page.meta?.tags ?? []).includes(tag)
+  ));
+
+  return {
+    title: `${tag}タグの記事一覧（${list.length}件）`,
+  };
 }
