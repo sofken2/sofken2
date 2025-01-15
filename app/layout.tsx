@@ -7,7 +7,10 @@ import { clsx } from './utils';
 import { font_variables } from './res/fonts';
 
 export const metadata: Metadata = {
-  title: '2部ソフ研',
+  title: {
+    default: '2部ソフ研',
+    template: '%s | 2部ソフ研',
+  },
   description: '東京電機大学2部ソフ研のホームページです。',
   keywords: ['2部ソフ研', 'ソフトウェア研究部', '東京電機大学', 'TDU'],
 };
@@ -40,7 +43,7 @@ export default function RootLayout({
           </ul>
         </header>
 
-        <main className="max-w-screen-sm min-h-full mx-auto bg-white/80 p-8 pt-24 -mb-60 pb-60 max-md:pt-36 max-md:max-w-full lg:max-w-screen-md dark:bg-slate-800">
+        <main className="max-w-screen-sm min-h-screen mx-auto bg-white/80 p-8 pt-24 -mb-60 pb-60 max-md:pt-36 max-md:max-w-full lg:max-w-screen-md dark:bg-slate-800">
           {children}
         </main>
 

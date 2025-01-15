@@ -143,6 +143,9 @@ const config = {
   ],
   theme: {
     extend: {
+      borderWidth: {
+        '1.5': '1.5px',
+      },
       fontFamily: {
         // kazesawa: [
         //   ['var(--font-source-sans)', 'var(--font-mplus-1)', 'Kazesawa', ...defaultTheme.fontFamily.sans],

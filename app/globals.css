@@ -19,25 +19,25 @@ body {
   background: var(--background);
 }
 
-.prose {
-  :is(h1, h2, h3, h4, h5, h6) {
+.prose *:not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  &:is(h1, h2, h3, h4, h5, h6) {
     @apply relative before:content-["#"] before:me-1;
 
     a {
       @apply mx-2 align-middle overflow-hidden after:icon-mdi-light-link-variant opacity-0;
     }
-    &:hover a {
-      @apply opacity-100;
-    }
-  }
-  h1 { @apply border-blue-400 border-b-4 pb-1; }
-  h2 { @apply border-blue-400 border-b-4 pb-1; }
-  h3 { @apply border-blue-400 border-b-2 pb-1; }
-  h4 { @apply border-blue-400 border-b-2 pb-1; }
-  h5 { @apply border-blue-400 border-b-[1px]; }
-  h6 { @apply border-blue-400 border-b-[1px]; }
 
-  a[href^='http'] {
+    @apply [&_a]:hover:opacity-100 [&_a]:focus:opacity-100 [&_a]:focus-within:opacity-100;
+  }
+
+  &:is(h1) { @apply border-blue-400 border-b-4 pb-1; }
+  &:is(h2) { @apply border-blue-400 border-b-4 pb-1; }
+  &:is(h3) { @apply border-blue-400 border-b-2 pb-1; }
+  &:is(h4) { @apply border-blue-400 border-b-2 pb-1; }
+  &:is(h5) { @apply border-blue-400 border-b-[1px]; }
+  &:is(h6) { @apply border-blue-400 border-b-[1px]; }
+
+  &:is(a[href^='http']) {
     @apply after:icon-mslight-open-in-new after:mx-0.5 after:align-middle;
   }
 }
