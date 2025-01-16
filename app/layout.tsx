@@ -76,7 +76,7 @@ export default function RootLayout({
           ))}
         </footer>
 
-        {(preview) && <label className="fixed bottom-4 right-4 w-max self-center p-2 bg-[repeating-linear-gradient(135deg,black_0px,black_20px,yellow_20px,yellow_40px)] transition-all duration-500 has-[#preview-tip:checked]:translate-x-full has-[#preview-tip:checked]:opacity-20 cursor-pointer">
+        {(preview) && <label className="fixed bottom-4 right-4 w-max self-center p-2 bg-[repeating-linear-gradient(135deg,black_0px,black_20px,yellow_20px,yellow_40px)] transition-all duration-500 has-[#preview-tip:checked]:translate-x-full has-[#preview-tip:checked]:opacity-20 cursor-pointer z-10">
           <input type="checkbox" id="preview-tip" name="hide-preview-tip" className="absolute inset-0 appearance-none cursor-pointer" />
           <div className="flex flex-row items-center self-center bg-slate-600 px-2 py-1 text-white">
             <span className="icon-mslight-construction text-4xl me-2"></span>
@@ -87,13 +87,7 @@ export default function RootLayout({
           </div>
         </label>}
 
-        {(false) && <div className="fixed inset-0 m-auto size-max text-4xl select-none">
-          <span className="sm:after:content-['sm'] md:after:content-['md'] lg:after:content-['lg'] xl:after:content-['xl']" />
-          <span> / </span>
-          <span className="max-sm:after:content-['max-sm'] max-md:after:content-['max-md'] max-lg:after:content-['max-lg'] max-xl:after:content-['max-xl']" />
-        </div>}
-
-        {(development || preview) && <div className="flex flex-col fixed inset-y-0 right-4 m-auto size-min p-1 bg-black/80 text-white rounded-full -space-y-1 before:absolute before:inset-x-0 before:size-8 before:m-1 before:rounded-full before:bg-white/20 has-[#theme-light:checked]:before:top-0 has-[#theme-system:checked]:before:top-[1.75rem] has-[#theme-dark:checked]:before:top-[3.5rem] before:transition-all">
+        {(development || preview) && <div className="flex flex-col fixed inset-y-0 right-4 m-auto size-min p-1 bg-black/80 text-white rounded-full -space-y-1 before:absolute before:inset-x-0 before:size-8 before:m-1 before:rounded-full before:bg-white/20 has-[#theme-light:checked]:before:top-0 has-[#theme-system:checked]:before:top-[1.75rem] has-[#theme-dark:checked]:before:top-[3.5rem] before:transition-all z-10">
           {([
             ['theme-light', 'icon-mslight-light-mode-outline', 'Light Mode'],
             ['theme-system', 'icon-mslight-display-settings-outline', 'No Override', true],
@@ -108,7 +102,7 @@ export default function RootLayout({
           ))}
         </div>}
 
-        {(development || preview) && <label className="flex flex-col gap-1 fixed inset-y-0 left-4 m-auto size-max min-w-40 p-1 bg-black/80 text-white transition-all duration-500 has-[#scroll-tip:checked]:-translate-x-full has-[#scroll-tip:checked]:opacity-20 has-[#scroll-tip:checked]:pe-4 cursor-pointer">
+        {(development || preview) && <label className="flex flex-col gap-1 fixed inset-y-0 left-4 m-auto size-max min-w-40 p-1 bg-black/80 text-white transition-all duration-500 has-[#scroll-tip:checked]:-translate-x-full has-[#scroll-tip:checked]:opacity-20 has-[#scroll-tip:checked]:pe-4 cursor-pointer z-10">
           <input type="checkbox" id="scroll-tip" name="hide-scroll-tip" className="absolute inset-0 appearance-none cursor-pointer" defaultChecked />
 
           <div className="w-full relative after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-current after:origin-left after:scale-x-[--scroll-pos]">scroll-position</div>

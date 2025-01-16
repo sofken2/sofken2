@@ -20,7 +20,7 @@ export default async function Article({
   const { default: Page, meta, toc } = await article.page();
 
   return (<div className="prose prose-slate prose-relative-weight prose-theme-override my-16 max-w-full lg:prose-lg dark:prose-invert">
-    <TagList tags={meta?.tags ?? []} />
+    <TagList tags={meta?.tags ?? []} classes={{ wrapper: 'bg-slate-100 dark:bg-slate-900' }} />
     <Toc toc={toc} min={2} />
     <Page toc={<Toc toc={toc} min={2} />} />
   </div>);
