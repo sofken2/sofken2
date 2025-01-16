@@ -12,11 +12,11 @@ export default async function ArticleList({
 }) {
   return (<ol className="not-prose space-y-4">
     {articles.map(({ name, page: { meta } }) => (<li key={name}>
-      <article className="relative bg-white rounded-lg p-4 hover:bg-slate-100 shadow-slate-200 shadow-sm transition-colors dark:bg-slate-900 dark:shadow-none dark:hover:bg-slate-700">
+      <article className="relative bg-white rounded-lg p-4 shadow-slate-200 shadow-md transition-colors dark:bg-slate-900 dark:shadow-none">
 
         <h1 className="text-4xl">
           <Link href={`/blog/${name}`} className="before:absolute before:inset-0 before:z-0">
-            {meta?.title ?? name}
+            <span className="relative hover:underline z-[1]">{meta?.title ?? name}</span>
           </Link>
         </h1>
         {meta?.auther && <div className="flex items-center gap-1">
